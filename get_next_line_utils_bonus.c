@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hojakim <hojakim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 12:46:59 by hojakim           #+#    #+#             */
-/*   Updated: 2023/03/30 20:47:18 by hojakim          ###   ########.fr       */
+/*   Updated: 2023/03/24 18:01:42 by hojakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 unsigned int	ft_strlen(const char *s)
 {
@@ -77,7 +77,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 size_t	ft_len_check(char const *s, unsigned int start, size_t len)
 {
 	size_t	result;
-	
+
 	result = 0;
 	if (ft_strlen(s) <= start)
 		return (0);

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hojakim <hojakim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:26:49 by hojakim           #+#    #+#             */
-/*   Updated: 2023/03/24 17:58:57 by hojakim          ###   ########.fr       */
+/*   Updated: 2023/03/24 17:58:55 by hojakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*gnl_strchr(const char *s, int c)
 {
@@ -102,19 +102,21 @@ char	*refresh_backup(char *backup)
 
 char	*get_next_line(int fd)
 {
-	static char	*backup = NULL;
+	static char	*backup[OPEN_MAX];
 	char		buffer[BUFFER_SIZE + 1];
 	char		*result;
 
 	if (BUFFER_SIZE <= 0 || fd < 0)
-		return (NULL);
-	backup = read_line(fd, buffer, backup);
-	if (!backup)
 	{
 		return (NULL);
 	}
-	result = get_one_line(backup);
-	backup = refresh_backup(backup);
+	backup[fd] = read_line(fd, buffer, backup[fd]);
+	if (!backup[fd])
+	{
+		return (NULL);
+	}
+	result = get_one_line(backup[fd]);
+	backup[fd] = refresh_backup(backup[fd]);
 	return (result);
 }
 
